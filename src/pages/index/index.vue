@@ -1,6 +1,7 @@
 <template>
 	<view class="content">
-		<uni-badge :text="count" />
+		{{ counter.count }}
+		<uni-badge :text="count" @click="add" />
 		<uni-list>
 			<uni-list-item v-for="item in listData" :title="item.bookName"></uni-list-item>
 		</uni-list>
@@ -17,9 +18,17 @@
 	import type {
 		IUserInfo
 	} from "@/api/type";
+	import {
+		useCounterStore
+	} from '@/stores/counter'
 
 	const listData = ref < IUserInfo[] > ([])
 	const count = ref < number > (0)
+	const counter = useCounterStore()
+
+	function add() {
+		counter.increment();
+	}
 
 	getList();
 	async function getList() {

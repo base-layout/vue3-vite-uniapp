@@ -60,7 +60,6 @@ const promise = <T>(url: string, data: any = {}, method: RequestOptionsMethod) =
 			method,
 			data,
 			success: (res: any) => {
-				console.log(res);
 				if (res.statusCode === 200) {
 					resolve(res.data)
 				} else {
